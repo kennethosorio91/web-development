@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Mount Hamiguitan Range Wildlife Sanctuary Feedback Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('beach.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #005f73;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .rating input {
+            position: absolute;
+            left: -9999px;
+        }
+        .rating label {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .rating input:checked ~ label {
+            color: gold;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+        }
+        button {
+            background-color: #005f73;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0a9396;
+        }
+        .language-toggle {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .language-toggle button {
+            background: none;
+            border: none;
+            color: #005f73;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-toggle">
+            <button onclick="toggleLanguage()">Tagalog</button>
+        </div>
+        <h1 id="form-title">Tourism Feedback Form</h1>
+        <form>
+            <label for="nationality" id="nationality-label">Nationality</label>
+            <select id="nationality" name="nationality">
+                <option value="local">Local</option>
+                <option value="foreign">Foreign</option>
+            </select>
+
+            <label for="visit-date" id="visit-date-label">Visit Date</label>
+            <input type="date" id="visit-date" name="visit-date">
+
+
+            <label id="rating-label">Cleanliness Rating:</label>
+            <div class="rating" id="rating-container">
+                <input type="radio" id="star1" name="rating" value="1" required>
+                <label for="star1" title="1 star">★</label>
+                <input type="radio" id="star2" name="rating" value="2" required>
+                <label for="star2" title="2 stars">★</label>
+                <input type="radio" id="star3" name="rating" value="3" required>
+                <label for="star3" title="3 stars">★</label>
+                <input type="radio" id="star4" name="rating" value="4" required>
+                <label for="star4" title="4 stars">★</label>
+                <input type="radio" id="star5" name="rating" value="5" required>
+                <label for="star5" title="5 stars">★</label>
+            </div>
+            
+
+            <label id="amenities-label">Amenities Used</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="amenities" value="restrooms"> Restrooms</label>
+                <label><input type="checkbox" name="amenities" value="parking"> Parking</label>
+                <label><input type="checkbox" name="amenities" value="guides"> Guides</label>
+            </div>
+
+            <label for="comments" id="comments-label">Additional Comments</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <script>
+        let isEnglish = true;
+        function toggleLanguage() {
+            isEnglish = !isEnglish;
+            document.getElementById('form-title').textContent = isEnglish ? 'Tourism Feedback Form' : 'Feedback Form sa Turismo';
+            document.getElementById('nationality-label').textContent = isEnglish ? 'Nationality' : 'Nasyonalidad';
+            document.getElementById('visit-date-label').textContent = isEnglish ? 'Visit Date' : 'Petsa ng Pagbisita';
+            document.getElementById('rating-label').textContent = isEnglish ? 'Cleanliness Rating' : 'Rating ng Kalinisan';
+            document.getElementById('amenities-label').textContent = isEnglish ? 'Amenities Used' : 'Mga Serbisyong Ginamit';
+            document.getElementById('comments-label').textContent = isEnglish ? 'Additional Comments' : 'Karagdagang Komento';
+            document.querySelector('.language-toggle button').textContent = isEnglish ? 'Tagalog' : 'English';
+        }
+    </script>
+</body>
+</html>

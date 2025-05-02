@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+  <!-- Made by Kenneth P. Osorio | DIT 2-2 -->
+<head>
+    <title>HTML Tags</title>
+</head>
+
+<body style = "background-color: bisque;">
+
+    <p style = "color: rgb(196, 10, 10); font-size: 350%; text-align: center; font-family: 'Times New Roman', Times, serif;">Web Development 14 April, 2025</p>
+
+    <h1>"HTML Styles: text color, fonts, alignment"</h1>
+    <h2>Type of List Tags</h1>
+    <h2>1. Ordered List of my Favorite Book Genres (Numbered List)</h2>
+    <ol>
+        <li>Sci-fi</li>
+        <li>Dystopian</li>
+        <li>Poetry</li>
+    </ol>
+
+    <h2>2. Unordered List of Fruits (Bulleted List)</h2>
+    <ul>
+        <li>Apple</li>
+        <li>Cucumber</li>
+        <li>Pineapple</li>
+    </ul>
+
+    <h2>3. Mark and Deleted Paragraphs</h2>
+    <p>My favorite color is <mark>White.</mark></p>
+    <p>This text is <del>deleted</del> word.</p>
+    <p>This is an <ins>inserted</ins> text.</p>
+    <p style = "border: 7px; border-style: double; border-color: rgb(0, 0, 0);">This text is inside a border.</p>
+    
+    <h2>4. Border</h2>
+    <table style="border: 2px solid rgb(158, 0, 0); border-collapse: collapse; width: 100%; text-align: center;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid black;">Name</th>
+                <th style="border: 1px solid black;">Age</th>
+                <th style="border: 1px solid black;">Country</th>
+                <th style="border: 1px solid black;">Birthday</th>
+            </tr>
+        </thead>
+         <tbody>
+            <tr>
+                <td style="border: 1px solid black;">John Pork</td>
+                <td style="border: 1px solid black;">20</td>
+                <td style="border: 1px solid black;">Philippines</td>
+                <td style="border: 1px solid black;">January 1</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">Jane Doe</td>
+                <td style="border: 1px solid black;">25</td>
+                <td style="border: 1px solid black;">USA</td>
+                <td style="border: 1px solid black;">February 14</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">Akira Tanaka</td>
+                <td style="border: 1px solid black;">30</td>
+                <td style="border: 1px solid black;">Japan</td>
+                <td style="border: 1px solid black;">March 3</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">Maria Gonzalez</td>
+                <td style="border: 1px solid black;">28</td>
+                <td style="border: 1px solid black;">Mexico</td>
+                <td style="border: 1px solid black;">April 22</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">Liam O'Connor</td>
+                <td style="border: 1px solid black;">35</td>
+                <td style="border: 1px solid black;">Ireland</td>
+                <td style="border: 1px solid black;">May 15</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>5. Forms, Radio Buttons & Checkboxes</h2>
+
+    <h3>Input User Identification</h3>
+    
+    <label for="first_name">First Name:</label><br>
+    <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+    <br>
+    <label for="last_name">Last Name:</label><br>
+    <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+    <br>
+
+    <h3>Radio Buttons</h3>
+
+    <p>Select your Gender</p>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label>
+    <br>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label>
+    <br>
+    <input type="radio" id="prefer_not_to_say" name="gender" value="prefer_not_to_say">
+    <label for="prefer_not_to_say">Prefer not to say</label>
+    <br>
+
+    <h3>Checkboxes</h3>
+
+    <p>Select your Identification Card</p>
+
+    <input type="checkbox" id="passport" name="identification" value="passport">
+    <label for="passport">Passport</label>
+    <br>
+    <input type="checkbox" id="drivers_license" name="identification" value="drivers_license">
+    <label for="drivers_license">Driver's License</label>
+    <br>
+    <input type="checkbox" id="national_id" name="identification" value="national_id">
+    <label for="national_id">National ID</label>
+    <br>
+    <input type="checkbox" id="student_id" name="identification" value="student_id">
+    <label for="student_id">Student ID</label>
+    <br>
+
+</body>
+
+</html>
