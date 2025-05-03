@@ -343,6 +343,8 @@
                     <input type="text" id="name" name="name" required><br><br>
                     <label for="email">Email:</label><br>
                     <input type="email" id="email" name="email" required><br><br>
+                    <label for="contact">Contact Number:</label><br>
+                    <input type="tel" id="contact" name="contact" required><br><br>
                     <label for="address">Address:</label><br>
                     <textarea id="address" name="address" required></textarea><br><br>
                     <label for="payment-method">Payment Method:</label><br>
@@ -369,7 +371,8 @@
             checkoutDiv.style.padding = '20px';
             checkoutDiv.style.borderRadius = '10px';
             checkoutDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-            checkoutDiv.style.overflowY = 'auto';
+            checkoutDiv.style.maxHeight = '80%'; // Limit height
+            checkoutDiv.style.overflowY = 'auto'; // Enable scrolling
             checkoutDiv.innerHTML = checkoutHTML;
 
             // Add close button
@@ -393,8 +396,66 @@
 
             document.getElementById('checkout-form').addEventListener('submit', (e) => {
                 e.preventDefault();
-                alert('Order submitted successfully!');
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const contact = document.getElementById('contact').value;
+                const address = document.getElementById('address').value;
+                const paymentMethod = document.getElementById('payment-method').value;
+
+                // Generate ticket page
+                let ticketHTML = '<h2>Order Ticket</h2>';
+                ticketHTML += `<p><strong>Name:</strong> ${name}</p>`;
+                ticketHTML += `<p><strong>Email:</strong> ${email}</p>`;
+                ticketHTML += `<p><strong>Contact Number:</strong> ${contact}</p>`;
+                ticketHTML += `<p><strong>Address:</strong> ${address}</p>`;
+                ticketHTML += `<p><strong>Payment Method:</strong> ${paymentMethod}</p>`;
+                ticketHTML += '<h3>Items Ordered:</h3>';
+                ticketHTML += '<ul>';
+                cart.forEach(item => {
+                    ticketHTML += `
+                        <li style="margin-bottom: 20px;">
+                            <img src="${item.albumImage}" alt="${item.albumName}" style="width: 50px; height: 50px; margin-right: 10px; vertical-align: middle;">
+                            ${item.albumName} - ₱${item.albumPrice.toFixed(2)}
+                        </li>`;
+                });
+                ticketHTML += '</ul>';
+                ticketHTML += `<h3>Total Price: ₱${totalPrice.toFixed(2)}</h3>`;
+
+                const ticketDiv = document.createElement('div');
+                ticketDiv.style.position = 'fixed';
+                ticketDiv.style.top = '50%';
+                ticketDiv.style.left = '50%';
+                ticketDiv.style.transform = 'translate(-50%, -50%)';
+                ticketDiv.style.width = '90%';
+                ticketDiv.style.maxWidth = '500px';
+                ticketDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                ticketDiv.style.color = 'white';
+                ticketDiv.style.padding = '20px';
+                ticketDiv.style.borderRadius = '10px';
+                ticketDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                ticketDiv.style.overflowY = 'auto';
+                ticketDiv.style.maxHeight = '80%'; // Limit height for ticket page
+                ticketDiv.innerHTML = ticketHTML;
+
+                // Add close button to ticket
+                const ticketCloseButton = document.createElement('button');
+                ticketCloseButton.innerText = 'Close';
+                ticketCloseButton.style.position = 'absolute';
+                ticketCloseButton.style.top = '10px';
+                ticketCloseButton.style.right = '10px';
+                ticketCloseButton.style.backgroundColor = 'red';
+                ticketCloseButton.style.color = 'white';
+                ticketCloseButton.style.border = 'none';
+                ticketCloseButton.style.borderRadius = '5px';
+                ticketCloseButton.style.padding = '5px 10px';
+                ticketCloseButton.style.cursor = 'pointer';
+                ticketCloseButton.addEventListener('click', () => {
+                    document.body.removeChild(ticketDiv);
+                });
+                ticketDiv.appendChild(ticketCloseButton);
+
                 document.body.removeChild(checkoutDiv);
+                document.body.appendChild(ticketDiv);
             });
         }
 

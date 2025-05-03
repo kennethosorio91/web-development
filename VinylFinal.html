@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinyl Vault | Premium Vinyl Records</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5dc;
+            color: #333;
+
+            main {
+                margin: 50px auto;
+                max-width: 1400px;
+                padding: 0 20px;
+            }
+
+            header {
+                background-color: #121212;
+                color: white;
+                padding: 20px 50px;
+                position: relative;
+            }
+
+            footer {
+                background-color: #121212;
+                text-align: center;
+                color: white;
+                padding: 20px;
+                font-size: 14px;
+                margin-top: 50px;
+            }
+
+            /* Navigation */
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 50px;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                gap: 15px;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: white;
+                transition: color 0.3s ease;
+            }
+
+            nav a:hover {
+                color: goldenrod;
+                text-decoration: underline;
+            }
+
+            .logo {
+                width: 30px;
+                height: 30px;
+            }
+
+            /* Hero Section */
+            .hero {
+                text-align: center;
+                padding: 20px 0 50px;
+            }
+
+            .hero h2 {
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                margin: 20px 0 0;
+            }
+
+            .hero p {
+                font-size: clamp(1rem, 2vw, 1.25rem);
+                color: rgba(245, 245, 245, 0.848);
+                margin: 10px 0 20px;
+            }
+
+            /* Buttons */
+            .btn {
+                display: inline-block;
+                background-color: goldenrod;
+                color: black;
+                border: none;
+                border-radius: 5px;
+                padding: 12px 25px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: center;
+            }
+
+            .btn:hover {
+                background-color: #d4af37;
+                transform: translateY(-2px);
+            }
+
+            .btn-explore {
+                margin: 25px auto 50px;
+            }
+
+            /* Vinyl Grid */
+            .section-title {
+                text-align: center;
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                margin-bottom: 10px;
+            }
+
+            .section-divider {
+                width: 15%;
+                border: 2px solid goldenrod;
+                margin: 0 auto 20px;
+            }
+
+            .section-description {
+                text-align: center;
+                color: gray;
+                max-width: 800px;
+                margin: 0 auto 30px;
+            }
+
+            .vinyl-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 30px;
+            }
+
+            .vinyl-item {
+                position: relative;
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+
+            .vinyl-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .vinyl-item img {
+                width: 100%;
+                height: auto;
+                border-radius: 5px;
+                transition: filter 0.3s ease;
+            }
+
+            .vinyl-item:hover img {
+                filter: brightness(0.7);
+            }
+
+            .vinyl-info {
+                text-align: left;
+                margin-top: 10px;
+                padding: 0 10px;
+            }
+
+            .vinyl-title {
+                font-weight: bold;
+                margin: 5px 0;
+            }
+
+            .vinyl-price {
+                color: gray;
+                margin: 5px 0 20px;
+            }
+
+            .add-to-cart {
+                display: none;
+                position: absolute;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: goldenrod;
+                color: black;
+                border: none;
+                border-radius: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+                z-index: 2;
+            }
+
+            .vinyl-item:hover .add-to-cart {
+                display: block;
+            }
+
+            /* Store Experience Section */
+            .experience-section {
+                background-color: #3e2723;
+                color: white;
+                padding: 4rem 1.5rem;
+                margin-top: 50px;
+            }
+
+            .experience-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: row;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            .experience-content {
+                flex: 1;
+            }
+
+            .experience-content h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .experience-content p {
+                color: #d3d3d3;
+                margin-bottom: 1.5rem;
+            }
+
+            .experience-note {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: #d3d3d3;
+                font-style: italic;
+            }
+
+            .experience-image {
+                flex: 1;
+                position: relative;
+                background-color: #000000;
+                padding: 0.25rem;
+                border-radius: 10px;
+                transform: rotate(3deg);
+                transition: transform 0.3s ease;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .experience-image:hover {
+                transform: rotate(0);
+            }
+
+            .experience-image img {
+                max-width: 100%;
+                border-radius: calc(8px - 2px);
+            }
+
+            /* Cart Icon */
+            #cart-icon {
+                position: relative;
+                cursor: pointer;
+                margin-left: 20px;
+            }
+
+            #cart-counter {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                background: goldenrod;
+                color: black;
+                border-radius: 50%;
+                padding: 2px 6px;
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            /* Modal Styles */
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 100;
+                overflow-y: auto;
+            }
+
+            .modal-content {
+                position: relative;
+                background-color: white;
+                margin: 5% auto;
+                padding: 30px;
+                width: 90%;
+                max-width: 600px;
+                border-radius: 10px;
+                color: #333;
+                animation: modalFadeIn 0.3s;
+            }
+
+            @keyframes modalFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background-color: red;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+
+            /* Form Styles */
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            .form-group textarea {
+                height: 100px;
+                resize: vertical;
+            }
+
+            /* Responsive Adjustments */
+            @media (max-width: 768px) {
+                .header-container {
+                    flex-direction: column;
+                    gap: 20px;
+                    margin-bottom: 30px;
+                }
+
+                .experience-container {
+                    flex-direction: column;
+                }
+
+                .experience-content {
+                    padding-right: 0;
+                }
+
+                .experience-note {
+                    padding-right: 0;
+                }
+
+                nav ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+            }
+
+            @media (max-width: 480px) {
+                header {
+                    padding: 20px;
+                }
+
+                .modal-content {
+                    padding: 20px;
+                }
+            }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="brand">
+                <img src="https://i.imgur.com/c3rGFBg.png" alt="Vinyl Vault logo" class="logo">
+                <h1>VINYL VAULT</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <div id="cart-icon">
+                            <span>Checkout</span>
+                            <span id="cart-counter">0</span>🛒
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="hero">
+            <h2>Discover the Perfect Sound</h2>
+            <p>Curated vinyl collections for discerning music lovers</p>
+            <button class="btn btn-explore">Explore Collection</button>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="section-title">Featured Albums</h1>
+        <hr class="section-divider">
+        <p class="section-description">Our hand-picked selection of must-have vinyl records, from timeless classics to
+            modern masterpieces.</p>
+
+        <div class="vinyl-grid">
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/FOOuTGspaW1gMBuxymHERoUKu4mDSLgWY-jGslkBnxI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1Njcw/OTMwLTE3MDIzNzY2/NTctNzMwOS5qcGVn.jpeg"
+                    alt="Taylor Swift - Folklore">
+                <div class="vinyl-info">
+                    <p class="vinyl-title">Taylor Swift / Folklore</p>
+                    <p class="vinyl-price">₱1,800</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/mwzjyCsowazMVR2nJbNTtepCyuVWcUoCBDu4g-msyZY/rs:fit/g:sm/q:90/h:600/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMzNjU5/MDI4LTE3NDQzMDk1/MTItNzI3NC5qcGVn.jpeg"
+                    alt="Bon Iver - Sable, Fable">
+                <div class="vinyl-info">
+                    <p class="vinyl-title">Bon Iver / Sable, Fable</p>
+                    <p class="vinyl-price">₱2,000</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/4Gcb5wyP9TPl4cr3PW4voIXjboRoN7MIzC6BDkY1yTA/rs:fit/g:sm/q:90/h:562/w:570/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODI2/NzMwLTE2NjU3OTM5/OTktNDgwNS5qcGVn.jpeg"
+                    alt="The 1975 - Being Funny In A Foreign Language">
+                <div class="vinyl-info">
+                    <p class="vinyl-title">The 1975 / Being Funny In A Foreign Language</p>
+                    <p class="vinyl-price">₱1,500</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/F_KSyKjGi2YN5SBttMhdgP2zyNdmHv7HHWvDVGj3Shg/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5NTA3/OTgtMTM4ODYyMzYx/MS0yMzYyLmpwZWc.jpeg"
+                    alt="Radiohead - OK Computer">
+                <div class="vinyl-info">
+                    <p class="vinyl-title">Radiohead / OK Computer</p>
+                    <p class="vinyl-price">₱2,500</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/fM_XH-5ZRQTBR-_koiuGDfOOS80s6OyzpMdzCikhwrI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczOTE2/ODMtMTQ0NDI0NTA5/OS0yNDg1LmpwZWc.jpeg"
+                    alt="Beach House - Depression Cherry">
+                <div class="vinyl-info">
+                    <p class="vinyl-title">Beach House / Depression Cherry</p>
+                    <p class="vinyl-price">₱1,700</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/bUjb_EuTpvf5R96X3WXK_WjK3UM2_qt37R-5jWeVmfk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4NDE0/NzYzLTE2MTkxMjQz/ODAtODYxOC5qcGVn.jpeg"
+                    alt="Porter Robinson - Nurture">
+                <div class="vinyl-info">
+                    <p class="vinyl-title">Porter Robinson / Nurture</p>
+                    <p class="vinyl-price">₱2,200</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/lyhTL4PK2XR5Y4su5kJAigvz-TmEOi9R8pR9hT3qZig/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0OTU3/MTIxLTE2NjgxMTYx/MjQtNTAwNS5qcGVn.jpeg"
+                    alt="Noah Kahan - Stick Season">
+                <div class="vinyl-info">
+                    <p class="vinyl-title">Noah Kahan / Stick Season</p>
+                    <p class="vinyl-price">₱2,500</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/ourI3ScU0PVLM-1hJ_3IBvZoCfytFR95zfesJyM4OmI/rs:fit/g:sm/q:90/h:600/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUwMjI1/NTUtMTM4MjM3OTUx/Ni02NDU5LmpwZWc.jpeg"
+                    alt="Coldplay - A Rush of Blood to the Head">
+                <div class="vinyl-info">
+                    <p class="vinyl-title">Coldplay / A Rush of Blood to the Head</p>
+                    <p class="vinyl-price">₱2,800</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Store Experience Section -->
+        <section class="experience-section">
+            <div class="experience-container">
+                <div class="experience-content">
+                    <h2>The Vinyl Experience</h2>
+                    <p>
+                        At Vinyl Vault, we believe in the power of analog sound. Every record in our
+                        collection is carefully selected for its quality, rarity, and the pure joy
+                        it brings to music enthusiasts.
+                    </p>
+                    <div class="experience-note">
+                        <img src="https://i.imgur.com/LV7wfP7.png" alt="Icon" style="width: 20px; height: 20px;" />
+                        <span>Visit our store for the full vinyl experience</span>
+                    </div>
+                </div>
+
+                <div class="experience-image">
+                    <img src="https://images.pexels.com/photos/6826046/pexels-photo-6826046.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        alt="Vinyl Store Experience" />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <div id="checkout-content"></div>
+        </div>
+    </div>
+
+    <!-- Order Ticket Modal -->
+    <div id="ticket-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <div id="ticket-content"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Vinyl Vault. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const cart = [];
+        let cartCount = 0;
+
+        const cartCounter = document.getElementById('cart-counter');
+        const cartIcon = document.getElementById('cart-icon');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const ticketModal = document.getElementById('ticket-modal');
+        const checkoutContent = document.getElementById('checkout-content');
+        const ticketContent = document.getElementById('ticket-content');
+        const closeBtns = document.querySelectorAll('.close-btn');
+        const exploreBtn = document.querySelector('.btn-explore');
+
+        // Update cart counter
+        function updateCartCounter() {
+            cartCounter.textContent = cartCount;
+        }
+
+        function showModal(modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideModal(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const vinylItem = button.closest('.vinyl-item');
+                const albumName = vinylItem.querySelector('.vinyl-title').innerText;
+                const albumPrice = vinylItem.querySelector('.vinyl-price').innerText.replace('₱', '').replace(',', '');
+                const albumImage = vinylItem.querySelector('img').src;
+
+                cart.push({
+                    albumName,
+                    albumPrice: parseFloat(albumPrice),
+                    albumImage
+                });
+
+                cartCount++;
+                updateCartCounter();
+
+                button.textContent = 'Added!';
+                setTimeout(() => {
+                    button.textContent = 'Add to Cart';
+                }, 1000);
+            });
+        });
+
+        // Checkout functionality
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
+
+            let totalPrice = cart.reduce((total, item) => total + item.albumPrice, 0);
+
+            let checkoutHTML = '<h2>Checkout</h2>';
+            checkoutHTML += '<ul style="list-style: none; padding: 0; margin-bottom: 20px;">';
+            cart.forEach(item => {
+                checkoutHTML += `
+                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                        <img src="${item.albumImage}" alt="${item.albumName}" 
+                             style="width: 50px; height: 50px; margin-right: 10px; border-radius: 4px;">
+                        <div>
+                            <div>${item.albumName}</div>
+                            <div style="color: var(--secondary); font-weight: bold;">₱${item.albumPrice.toFixed(2)}</div>
+                        </div>
+                    </li>`;
+            });
+            checkoutHTML += '</ul>';
+            checkoutHTML += `<h3 style="text-align: right; margin-bottom: 30px;">Total: ₱${totalPrice.toFixed(2)}</h3>`;
+            checkoutHTML += `
+                <h3>Customer Information</h3>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact">Contact Number:</label>
+                        <input type="tel" id="contact" name="contact" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Delivery Address:</label>
+                        <textarea id="address" name="address" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="payment-method">Payment Method:</label>
+                        <select id="payment-method" name="payment-method" required>
+                            <option value="">Select payment method</option>
+                            <option value="COD">Cash on Delivery (COD)</option>
+                            <option value="GCASH">GCASH</option>
+                            <option value="VISA">VISA</option>
+                            <option value="MASTERCARD">MasterCard</option>
+                            <option value="CREDIT">Credit Card</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%; padding: 12px; margin-top: 20px;">
+                        Place Order
+                    </button>
+                </form>
+            `;
+
+            checkoutContent.innerHTML = checkoutHTML;
+            showModal(checkoutModal);
+
+            // Form submission
+            document.getElementById('checkout-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Validate email format
+                const email = document.getElementById('email').value;
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    alert('Please enter a valid email address');
+                    return;
+                }
+
+                const name = document.getElementById('name').value;
+                const contact = document.getElementById('contact').value;
+                const address = document.getElementById('address').value;
+                const paymentMethod = document.getElementById('payment-method').value;
+
+                // Generate order ticket
+                let ticketHTML = `
+                    <h2 style="color: var(--secondary); margin-bottom: 20px;">Order Confirmation</h2>
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <h3 style="margin-top: 0;">Customer Details</h3>
+                        <p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Email:</strong> ${email}</p>
+                        <p><strong>Contact:</strong> ${contact}</p>
+                        <p><strong>Address:</strong> ${address}</p>
+                        <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+                    </div>
+                    
+                    <h3>Order Summary</h3>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+                `;
+
+                cart.forEach(item => {
+                    ticketHTML += `
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                            <img src="${item.albumImage}" alt="${item.albumName}" 
+                                 style="width: 50px; height: 50px; margin-right: 10px; border-radius: 4px;">
+                            <div style="flex: 1;">
+                                <div>${item.albumName}</div>
+                                <div style="color: var(--secondary); font-weight: bold;">₱${item.albumPrice.toFixed(2)}</div>
+                            </div>
+                        </li>`;
+                });
+
+                ticketHTML += `
+                    </ul>
+                    <div style="text-align: right; font-size: 1.2rem;">
+                        <strong>Total: ₱${totalPrice.toFixed(2)}</strong>
+                    </div>
+                    <p style="margin-top: 30px; text-align: center; color: #666;">
+                        Thank you for your order! We'll contact you shortly to confirm delivery details.
+                    </p>
+                `;
+
+                ticketContent.innerHTML = ticketHTML;
+                hideModal(checkoutModal);
+                showModal(ticketModal);
+
+                cart.length = 0;
+                cartCount = 0;
+                updateCartCounter();
+            });
+        }
+
+        cartIcon.addEventListener('click', checkout);
+
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const modal = this.closest('.modal');
+                hideModal(modal);
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === checkoutModal) hideModal(checkoutModal);
+            if (e.target === ticketModal) hideModal(ticketModal);
+        });
+
+        exploreBtn.addEventListener('click', () => {
+            document.querySelector('.section-title').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        updateCartCounter();
+    </script>
+</body>
+
+</html>
