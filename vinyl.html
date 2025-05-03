@@ -9,26 +9,27 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 0;
+            padding: 0; 
+            background-color: #f5f5dc;
         }
 
-        main, footer {
+        main {
             margin: 50px auto;
-            
         }
 
         header {
-            background-color: #000000;
+            background-color:#121212;
             color: white;
             padding-bottom: 50px;
             padding: 20px 50px;
         }
 
         footer {
-            background-color: #000000;
+            background-color: #121212;
             text-align: center;
             color: white;
             padding: 20px;
+            font-size: 14px;
         }
 
         nav ul {
@@ -49,6 +50,7 @@
 
         nav ul li a:hover {
             color: goldenrod;
+            text-decoration: underline;
         }
 
         .logo {
@@ -69,13 +71,63 @@
             margin: 25px auto;
             margin-bottom: 50px;
         }
+
+        .vinyl-column {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .vinyl-item {
+            text-align: center;
+            flex: 1 1 calc(33.33% - 20px); /* Adjust width for 3 items per row */
+            position: relative; /* Added to enable absolute positioning of child elements */
+        }
+
+        .vinyl-item img {
+            width: 65%;
+            height: auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .vinyl-item p { 
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .vinyl-item:hover img {
+            filter: brightness(0.7);
+        }
+
+        .add-to-cart {
+            display: none;
+            position: absolute;
+            top: 40%; /* Moved higher */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: goldenrod;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px; /* Made smaller */
+            font-size: 12px; /* Reduced font size */
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .vinyl-item:hover .add-to-cart {
+            display: block;
+        }
+
     </style>
+    
 </head>
 <body>
     <header>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px;">
             <div style="display: flex; align-items: center;">
-            <img src="https://i.imgur.com/GikpK7m.png" alt="Vinyl Vault logo" class="logo">
+            <img src="https://i.imgur.com/c3rGFBg.png" alt="Vinyl Vault logo" class="logo">
             <h1 style="font-size: 1.0em; color: rgb(255, 255, 255);">VINYL VAULT</h1>
             </div>
             <nav>
@@ -83,6 +135,7 @@
                 <li style="margin-left: 15px;"><a href="#home">Home</a></li>
                 <li style="margin-left: 15px;"><a href="#about">About</a></li>
                 <li style="margin-left: 15px;"><a href="#contact">Contact</a></li>
+            </ul>
             </nav>
         </div>
         <h2 style="text-align: center; color: white; font-size: 55px; margin: 20px 0 0;">Discover the Perfect Sound</h2>
@@ -91,7 +144,53 @@
     </header>
 
     <main>
-        <p>Explore my collection of vinyl records!</p>
+        <h1 style="text-align: center; font-size: 35px; margin-bottom: 10px;">Featured Albums</h1>
+        <hr style="width: 15%; border: 2px solid goldenrod; margin-top: 0;">
+        <p style="text-align: center; color:gray"> Our hand-picked selection of must-have vinyl records, from timeless classics to modern masterpieces.</p>
+        <div class="vinyl-column">
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/FOOuTGspaW1gMBuxymHERoUKu4mDSLgWY-jGslkBnxI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1Njcw/OTMwLTE3MDIzNzY2/NTctNzMwOS5qcGVn.jpeg" alt="Vinyl 1">
+                <p style="text-align: left; margin: 10px auto; width: 65%;">Taylor Swift / Folklore</p>
+                <p style="text-align: left; color: grey; margin: 5px auto; width: 65%;">₱1,800</p>
+                <div style="margin-bottom: 50px;"></div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/mwzjyCsowazMVR2nJbNTtepCyuVWcUoCBDu4g-msyZY/rs:fit/g:sm/q:90/h:600/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMzNjU5/MDI4LTE3NDQzMDk1/MTItNzI3NC5qcGVn.jpeg" alt="Vinyl 2">
+                <p style="text-align: left; margin: 10px auto; width: 65%;">Bon Iver / Sable, Fable</p>
+                <p style="text-align: left; color: grey; margin: 5px auto; width: 65%;">₱2,000</p>
+                <div style="margin-bottom: 50px;"></div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/4Gcb5wyP9TPl4cr3PW4voIXjboRoN7MIzC6BDkY1yTA/rs:fit/g:sm/q:90/h:562/w:570/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODI2/NzMwLTE2NjU3OTM5/OTktNDgwNS5qcGVn.jpeg" alt="Vinyl 3">
+                <p style="text-align: left; margin: 10px auto; width: 65%;">The 1975 / Being Funny In A Foreign Language</p>
+                <p style="text-align: left; color: grey; margin: 5px auto; width: 65%;">₱1,500</p>
+                <div style="margin-bottom: 50px;"></div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/F_KSyKjGi2YN5SBttMhdgP2zyNdmHv7HHWvDVGj3Shg/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5NTA3/OTgtMTM4ODYyMzYx/MS0yMzYyLmpwZWc.jpeg" alt="Vinyl 4">
+                <p style="text-align: left; margin: 10px auto; width: 65%;">Radiohead / OK Computer</p>
+                <p style="text-align: left; color: grey; margin: 5px auto; width: 65%;">₱2,500</p>
+                <div style="margin-bottom: 50px;"></div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/fM_XH-5ZRQTBR-_koiuGDfOOS80s6OyzpMdzCikhwrI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczOTE2/ODMtMTQ0NDI0NTA5/OS0yNDg1LmpwZWc.jpeg" alt="Vinyl 5">
+                <p style="text-align: left; margin: 10px auto; width: 65%;">Beach House / Depression Cherry</p>
+                <p style="text-align: left; color: grey; margin: 5px auto; width: 65%;">₱1,700</p>
+                <div style="margin-bottom: 50px;"></div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="vinyl-item">
+                <img src="https://i.discogs.com/bUjb_EuTpvf5R96X3WXK_WjK3UM2_qt37R-5jWeVmfk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4NDE0/NzYzLTE2MTkxMjQz/ODAtODYxOC5qcGVn.jpeg" alt="Vinyl 6">
+                <p style="text-align: left; margin: 10px auto; width: 65%;">Porter Robinson / Nurture</p>
+                <p style="text-align: left; color: grey; margin: 5px auto; width: 65%;">₱2,200</p>
+                <div style="margin-bottom: 50px;"></div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
     </main>
 
     <footer>
