@@ -300,7 +300,121 @@
         </div>
       </section>
     </main>
+    <script>
+        // Cart functionality
+        const cart = [];
 
+        document.querySelectorAll('.add-to-cart').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                const vinylItem = button.closest('.vinyl-item');
+                const albumName = vinylItem.querySelector('p:nth-of-type(1)').innerText;
+                const albumPrice = vinylItem.querySelector('p:nth-of-type(2)').innerText.replace('₱', '').replace(',', '');
+                const albumImage = vinylItem.querySelector('img').src;
+
+                cart.push({ albumName, albumPrice: parseFloat(albumPrice), albumImage });
+                alert(`${albumName} has been added to your cart.`);
+            });
+        });
+
+        // Checkout functionality
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
+
+            let totalPrice = cart.reduce((total, item) => total + item.albumPrice, 0);
+
+            let checkoutHTML = '<h2>Checkout</h2>';
+            checkoutHTML += '<ul>';
+            cart.forEach(item => {
+                checkoutHTML += `
+                    <li style="margin-bottom: 20px;">
+                        <img src="${item.albumImage}" alt="${item.albumName}" style="width: 50px; height: 50px; margin-right: 10px; vertical-align: middle;">
+                        ${item.albumName} - ₱${item.albumPrice.toFixed(2)}
+                    </li>`;
+            });
+            checkoutHTML += '</ul>';
+            checkoutHTML += `<h3>Total Price: ₱${totalPrice.toFixed(2)}</h3>`;
+            checkoutHTML += `
+                <h3>Customer Information</h3>
+                <form id="checkout-form">
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required><br><br>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" required><br><br>
+                    <label for="address">Address:</label><br>
+                    <textarea id="address" name="address" required></textarea><br><br>
+                    <label for="payment-method">Payment Method:</label><br>
+                    <select id="payment-method" name="payment-method" required>
+                        <option value="COD">Cash on Delivery (COD)</option>
+                        <option value="GCASH">GCASH</option>
+                        <option value="VISA">VISA</option>
+                        <option value="MASTERCARD">MasterCard</option>
+                        <option value="CREDIT">Credit Card</option>
+                    </select><br><br>
+                    <button type="submit">Submit Order</button>
+                </form>
+            `;
+
+            const checkoutDiv = document.createElement('div');
+            checkoutDiv.style.position = 'fixed';
+            checkoutDiv.style.top = '50%';
+            checkoutDiv.style.left = '50%';
+            checkoutDiv.style.transform = 'translate(-50%, -50%)';
+            checkoutDiv.style.width = '90%';
+            checkoutDiv.style.maxWidth = '500px';
+            checkoutDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            checkoutDiv.style.color = 'white';
+            checkoutDiv.style.padding = '20px';
+            checkoutDiv.style.borderRadius = '10px';
+            checkoutDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+            checkoutDiv.style.overflowY = 'auto';
+            checkoutDiv.innerHTML = checkoutHTML;
+
+            // Add close button
+            const closeButton = document.createElement('button');
+            closeButton.innerText = 'Close';
+            closeButton.style.position = 'absolute';
+            closeButton.style.top = '10px';
+            closeButton.style.right = '10px';
+            closeButton.style.backgroundColor = 'red';
+            closeButton.style.color = 'white';
+            closeButton.style.border = 'none';
+            closeButton.style.borderRadius = '5px';
+            closeButton.style.padding = '5px 10px';
+            closeButton.style.cursor = 'pointer';
+            closeButton.addEventListener('click', () => {
+                document.body.removeChild(checkoutDiv);
+            });
+            checkoutDiv.appendChild(closeButton);
+
+            document.body.appendChild(checkoutDiv);
+
+            document.getElementById('checkout-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Order submitted successfully!');
+                document.body.removeChild(checkoutDiv);
+            });
+        }
+
+        // Add Checkout button
+        const checkoutButton = document.createElement('button');
+        checkoutButton.innerText = 'Checkout';
+        checkoutButton.style.backgroundColor = 'goldenrod';
+        checkoutButton.style.color = 'black';
+        checkoutButton.style.border = 'none';
+        checkoutButton.style.borderRadius = '5px';
+        checkoutButton.style.padding = '10px 20px';
+        checkoutButton.style.fontSize = '16px';
+        checkoutButton.style.fontWeight = 'bold';
+        checkoutButton.style.cursor = 'pointer';
+        checkoutButton.style.display = 'block';
+        checkoutButton.style.margin = '20px auto';
+        checkoutButton.addEventListener('click', checkout);
+
+        document.body.appendChild(checkoutButton);
+    </script>
     <footer>
         <p>&copy; 2023 My Vinyl Collection. All rights reserved.</p>
     </footer>
