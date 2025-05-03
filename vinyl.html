@@ -4,8 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vinyl Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        main, footer {
+            margin: 50px auto;
+            
+        }
+
+        header {
+            background-color: #000000;
+            color: white;
+            padding-bottom: 50px;
+            padding: 20px 50px;
+        }
+
+        footer {
+            background-color: #000000;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: goldenrod;
+        }
+
+        .logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .Explore {
+            background-color: goldenrod;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            padding: 18px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            margin: 25px auto;
+            margin-bottom: 50px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Vinyl Collection</h1>
+    <header>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px;">
+            <div style="display: flex; align-items: center;">
+            <img src="https://i.imgur.com/GikpK7m.png" alt="Vinyl Vault logo" class="logo">
+            <h1 style="font-size: 1.0em; color: rgb(255, 255, 255);">VINYL VAULT</h1>
+            </div>
+            <nav>
+            <ul style="display: flex; list-style: none; margin: 0; padding: 0;">
+                <li style="margin-left: 15px;"><a href="#home">Home</a></li>
+                <li style="margin-left: 15px;"><a href="#about">About</a></li>
+                <li style="margin-left: 15px;"><a href="#contact">Contact</a></li>
+            </nav>
+        </div>
+        <h2 style="text-align: center; color: white; font-size: 55px; margin: 20px 0 0;">Discover the Perfect Sound</h2>
+        <p style="text-align: center; color: rgba(245, 245, 245, 0.848); font-size: 20px; margin: 0;">Curated vinyl collections for discerning music lovers</p>
+        <button class="Explore">Explore Collection</button>
+    </header>
+
+    <main>
+        <p>Explore my collection of vinyl records!</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 My Vinyl Collection. All rights reserved.</p>
+    </footer>
 </body>
 </html>
